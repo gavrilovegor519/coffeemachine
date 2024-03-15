@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Objects;
 
 @Entity
-@Table(name = "coffeeMachine")
+@Table(name = "coffee_machines")
 @Getter
 @Setter
 public class CoffeeMachine {
@@ -16,7 +16,7 @@ public class CoffeeMachine {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "machineName", nullable = false, unique = true)
+    @Column(name = "machineName", nullable = false)
     private String machineName;
 
     @Column(name = "isEnabled")
@@ -24,6 +24,10 @@ public class CoffeeMachine {
 
     @Column(name = "isBusy")
     private boolean busy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {
