@@ -1,5 +1,6 @@
 package com.egor.coffeemachine.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,9 +9,11 @@ import lombok.Setter;
 @Setter
 public class CoffeeMachineDto {
     @NotEmpty(message = "Name is required")
-    private String name;
+    private String machineName;
 
-    private boolean isEnabled;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private boolean enabled;
 
-    private boolean isBusy;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private boolean busy;
 }

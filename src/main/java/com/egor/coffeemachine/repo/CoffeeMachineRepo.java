@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface CoffeeMachineRepo extends JpaRepository<CoffeeMachine, Long> {
-    Optional<CoffeeMachine> findByName(String name);
+    Optional<CoffeeMachine> findByMachineName(String name);
+
+    boolean existsByMachineName(String name);
 }
