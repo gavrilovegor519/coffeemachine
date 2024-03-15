@@ -125,10 +125,7 @@ public class CoffeeMachineServiceImpl implements CoffeeMachineService {
         User user = userRepo.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User with username " + username + " not found"));
 
-        CoffeeMachine coffeeMachine = user.getCoffeeMachines().stream().filter(
-                m -> m.getMachineName().equals(machine)).findFirst()
-                .orElseThrow(() -> new CoffeeMachineIsNotExistException("Coffee machine with name " + machine + " not found"));
-
-        coffeeMachineRepo.delete(coffeeMachine);
+        user.getCoffeeMachines().removeIf(m -> m.getMachineName().equals(machine));
+        userRepo.save(user);
     }
 }
