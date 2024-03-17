@@ -3,6 +3,7 @@ package com.egor.coffeemachine.controller;
 import com.egor.coffeemachine.dto.CoffeeMachineDto;
 import com.egor.coffeemachine.service.CoffeeMachineService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void addCoffeeMachine(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void addCoffeeMachine(@Parameter(required = true, description = "Coffee machine data")
+                                     @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                                  Authentication authentication) {
         coffeeMachineService.addCoffeeMachine(coffeeMachineDto, authentication.getName());
     }
@@ -44,7 +46,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void on(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void on(@Parameter(required = true, description = "Coffee machine data")
+                       @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                    Authentication authentication) {
         coffeeMachineService.on(coffeeMachineDto.getMachineName(), authentication.getName());
     }
@@ -59,7 +62,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void setBusy(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void setBusy(@Parameter(required = true, description = "Coffee machine data")
+                            @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                         Authentication authentication) {
         coffeeMachineService.setBusy(coffeeMachineDto.getMachineName(), authentication.getName());
     }
@@ -74,7 +78,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void unsetBusy(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void unsetBusy(@Parameter(required = true, description = "Coffee machine data")
+                              @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                           Authentication authentication) {
         coffeeMachineService.unsetBusy(coffeeMachineDto.getMachineName(), authentication.getName());
     }
@@ -89,7 +94,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public CoffeeMachineDto getState(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public CoffeeMachineDto getState(@Parameter(required = true, description = "Coffee machine data")
+                                         @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                                      Authentication authentication) {
         return coffeeMachineService.getState(coffeeMachineDto.getMachineName(), authentication.getName());
     }
@@ -104,7 +110,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void off(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void off(@Parameter(required = true, description = "Coffee machine data")
+                        @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                     Authentication authentication) {
         coffeeMachineService.off(coffeeMachineDto.getMachineName(), authentication.getName());
     }
@@ -131,7 +138,8 @@ public class CoffeeMachineController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not authorized")
             })
-    public void deleteMachine(@RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
+    public void deleteMachine(@Parameter(required = true, description = "Coffee machine data")
+                                  @RequestBody @Valid CoffeeMachineDto coffeeMachineDto,
                               Authentication authentication) {
         coffeeMachineService.deleteMachine(coffeeMachineDto.getMachineName(), authentication.getName());
     }

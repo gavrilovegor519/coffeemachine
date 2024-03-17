@@ -4,6 +4,7 @@ import com.egor.coffeemachine.dto.TokenDto;
 import com.egor.coffeemachine.dto.UserDto;
 import com.egor.coffeemachine.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,8 @@ public class UserController {
                     @ApiResponse(responseCode = "403",
                             description = "User is not found or incorrect password")
             })
-    public TokenDto login(@RequestBody @Valid UserDto userDto) {
+    public TokenDto login(@Parameter(required = true, description = "User data")
+                              @RequestBody @Valid UserDto userDto) {
         return userService.login(userDto);
     }
 
@@ -38,7 +40,8 @@ public class UserController {
                     @ApiResponse(responseCode = "409",
                             description = "Duplicate registration data")
             })
-    public void reg(@RequestBody @Valid UserDto userDto) {
+    public void reg(@Parameter(required = true, description = "User data")
+                        @RequestBody @Valid UserDto userDto) {
         userService.reg(userDto);
     }
 }
