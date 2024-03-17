@@ -9,3 +9,17 @@ and Security profile. Also, I'm using Flyway DB migration,
 Lombok, and some additional libraries.
 
 API docs: `/api-docs.html`
+
+## Starting up
+
+```shell
+#Step 1
+./mvnw clean package
+
+#Step 2
+# Copy .jar file from /target directory to /docker
+
+# Step 3
+# Run in the /docker folder
+docker compose up -d
+```

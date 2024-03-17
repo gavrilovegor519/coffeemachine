@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/coffeemachine
+      - SPRING_DATASOURCE_USERNAME=user # change to yours
+      - SPRING_DATASOURCE_PASSWORD=qwerty # change to yours
+    ports:
+      - "8080:8080"
+    networks:
+      - app
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user # change to yours
+      POSTGRES_PASSWORD: qwerty # change to yours
+      PGDATA: /data/postgres
+      POSTGRES_DB: coffeemachine
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  postgres:
