@@ -52,7 +52,7 @@ public class CoffeeMachineController {
         coffeeMachineService.on(coffeeMachineDto.getMachineName(), authentication.getName());
     }
 
-    @PostMapping("/setBusy")
+    @PostMapping("/busy/set")
     @Operation(summary = "Busy the coffee machine",
             responses = {
                     @ApiResponse(description = "The coffee machine now is busy",
@@ -68,7 +68,7 @@ public class CoffeeMachineController {
         coffeeMachineService.setBusy(coffeeMachineDto.getMachineName(), authentication.getName());
     }
 
-    @PostMapping("/unsetBusy")
+    @PostMapping("/busy/unset")
     @Operation(summary = "Not busy the coffee machine",
             responses = {
                     @ApiResponse(description = "The coffee machine now isn't busy",
